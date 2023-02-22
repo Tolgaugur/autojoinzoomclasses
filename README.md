@@ -1,9 +1,6 @@
 # autojoinzoomclasses
 
-pip install pyautogui
-pip install pandas
-pip install Pillow
-pip install opencv-python
+
 
 download these packages
 
