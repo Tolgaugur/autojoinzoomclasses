@@ -8,9 +8,11 @@ from datetime import datetime
 def sign_in(meetingid, pswd):
     # Opens up the zoom app
     # change the path specific to your computer
+
+    # If on windows use below line for opening zoom
     print("Opening Zoom")
-    # subprocess.call('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
-    subprocess.Popen('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
+    # subprocess.call('C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
+    subprocess.Popen('C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
    
     time.sleep(2)
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
@@ -72,13 +74,17 @@ def sign_in(meetingid, pswd):
 df = pd.read_csv("timings.csv")
 
 while True:
-    # checking of the current time exists in our csv file
-    now = datetime.now().strftime("%H:%M")
-    if now in str(df["timings"]):
-        row = df.loc[df["timings"] == now]
-        m_id = str(row.iloc[0, 1])
-        m_pswd = str(row.iloc[0, 2])
+   # checking of the current time exists in our csv file
+    now = datetime.now()
+    current_day = now.strftime("%A")
+    current_time = now.strftime("%H:%M")
+    matches = df[(df["days"] == current_day) & (df["timings"] == current_time)]
+    if not matches.empty:
+        # sign in to Zoom meeting(s) for the current time and day
 
-        sign_in(m_id, m_pswd)
-        time.sleep(40)
-        print("signed in")
+        for index, row in matches.iterrows():
+            m_id = str(row["meetingid"])
+            m_pswd = str(row["meetingpswd"])
+            sign_in(m_id, m_pswd)
+            time.sleep(40)
+            print("signed in to meeting id:", m_id)
