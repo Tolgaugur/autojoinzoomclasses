@@ -6,7 +6,7 @@ import pandas as pd
 from datetime import datetime
 
 
-def sign_in(meetingid, pswd,meetingurl):
+def sign_in(meetingid, pswd,meetingurl,classname):
     # Opens up the zoom app
     # change the path specific to your computer
 
@@ -18,6 +18,8 @@ def sign_in(meetingid, pswd,meetingurl):
     time.sleep(5)
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
     print("Zoom activated on the screen")
+    if classname != "nan":
+        print("Joinning for the class: "+classname)
     if meetingurl != "nan":
         print("Meeting URL: "+meetingurl)
     if meetingid != "nan":
@@ -107,7 +109,11 @@ while True:
             else:
                 m_pswd = str(row["meetingpswd"])
             m_url = row["meetingurl"]
+            if row["classname"]=="None":
+                m_name= ""
+            else:
+                m_name = str(row["classname"])
 
-            sign_in(m_id, m_pswd,m_url)
+            sign_in(m_id, m_pswd,m_url,m_name)
             time.sleep(46)
             print("signed in to meeting id:", m_id)
