@@ -1,8 +1,8 @@
-days,timings,meetingid,meetingpswd
-Tuesday,12:30,622 810 0394,437768
-Wednesday,11:30,622 810 0394,437768
-Wednesday,13:30,389 661 6497,123456
-Friday,9:30,876 608 0436,ATLM
-Friday,15:30,946 4890 8608,H49ixB
-Thursday,00:37,4564897,132156
+days,timings,meetingid,meetingpswd,meetingurl
+Tuesday,12:30,622 810 0394,437768,
+Wednesday,11:30,622 810 0394,437768,
+Wednesday,13:30,389 661 6497,123456,
+Friday,9:30,876 608 0436,ATLM,
+Friday,15:30,946 4890 8608,H49ixB,
+Thursday,19:12,,,https://zoom.us/j/93882143908
 
