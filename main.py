@@ -14,15 +14,13 @@ def sign_in(meetingid, pswd):
     # subprocess.call('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
     subprocess.Popen('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
    
-    time.sleep(2)
+    time.sleep(5)
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
     print("Zoom activated on the screen")
-    time.sleep(5)
+    print(meetingid)
+    print(pswd)
+    time.sleep(3)
     
-
-
-    
-  
     # clicks the join button
     print("Joining the meeting")
   
@@ -33,16 +31,15 @@ def sign_in(meetingid, pswd):
     pyautogui.click()
 
     # Type the meeting ID
-    meeting_id_btn = pyautogui.locateCenterOnScreen("meeting_id_button.png")
+    meeting_id_btn = pyautogui.locateCenterOnScreen("meeting_id_button.png",confidence=0.6)
     print(meeting_id_btn)
     pyautogui.moveTo(meeting_id_btn)
     pyautogui.click()
     pyautogui.write(meetingid)
-    time.sleep(1)
-    pyautogui.press("enter")
     time.sleep(3)
+    pyautogui.press("enter")
+    time.sleep(5)
     
-
     # Disables both the camera and the mic
     # media_btn = pyautogui.locateAllOnScreen("media_btn.png")
     # print(media_btn)
@@ -67,6 +64,7 @@ def sign_in(meetingid, pswd):
     pyautogui.moveTo(meeting_pswd_btn)
     pyautogui.click()
     pyautogui.write(pswd)
+    time.sleep(3)
     pyautogui.press("enter")
 
 
