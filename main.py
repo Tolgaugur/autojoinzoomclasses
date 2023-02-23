@@ -18,23 +18,27 @@ def sign_in(meetingid, pswd):
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
     print("Zoom activated on the screen")
     print(meetingid)
-    print(pswd)
+    if pswd == "":
+        print("No password")
+    else:
+        print(pswd)
     time.sleep(3)
     
     # clicks the join button
     print("Joining the meeting")
-  
+    
     
     join_btn = pyautogui.locateCenterOnScreen('join_button.png',confidence=0.9)
     print(join_btn)
     pyautogui.moveTo(join_btn)
     pyautogui.click()
-
+    
+    
     # Type the meeting ID
-    meeting_id_btn = pyautogui.locateCenterOnScreen("meeting_id_button.png",confidence=0.6)
+    meeting_id_btn = pyautogui.locateCenterOnScreen("meeting_id_button.png")
     print(meeting_id_btn)
     pyautogui.moveTo(meeting_id_btn)
-    pyautogui.click()
+    # pyautogui.click()
     pyautogui.write(meetingid)
     time.sleep(3)
     pyautogui.press("enter")
@@ -61,6 +65,9 @@ def sign_in(meetingid, pswd):
 
     meeting_pswd_btn = pyautogui.locateCenterOnScreen("meeting_pswd.png",confidence=0.9)
     print("found meeting pswd",meeting_pswd_btn)
+    if meeting_pswd_btn is None:
+        print("No password")
+        return
     pyautogui.moveTo(meeting_pswd_btn)
     pyautogui.click()
     pyautogui.write(pswd)
@@ -73,6 +80,7 @@ df = pd.read_csv("timings.csv")
 
 while True:
    # checking of the current time exists in our csv file
+   
     now = datetime.now()
     current_day = now.strftime("%A")
     current_time = now.strftime("%H:%M")
@@ -82,7 +90,10 @@ while True:
 
         for index, row in matches.iterrows():
             m_id = str(row["meetingid"])
-            m_pswd = str(row["meetingpswd"])
+            if row["meetingpswd"] == "None":
+                m_pswd = ""
+            else:
+                m_pswd = str(row["meetingpswd"])
             sign_in(m_id, m_pswd)
-            time.sleep(40)
+            time.sleep(20)
             print("signed in to meeting id:", m_id)

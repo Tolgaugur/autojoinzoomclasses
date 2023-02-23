@@ -1,0 +1,4 @@
+pandas==1.5.3
+PyAutoGUI==0.9.53
+Pillow==9.4.0
+opencv-python==4.7.0.72
