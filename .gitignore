@@ -1,3 +1,4 @@
+*.csv
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -36,7 +37,7 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-*timings.csv
+
 
 # Unit test / coverage reports
 htmlcov/
