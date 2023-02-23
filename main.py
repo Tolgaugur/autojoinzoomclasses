@@ -75,11 +75,11 @@ def sign_in(meetingid, pswd,meetingurl):
 
     meeting_pswd_btn = pyautogui.locateCenterOnScreen("meeting_pswd.png",confidence=0.9)
     
-    if meeting_pswd_btn is None:
-        return
+    
     pyautogui.moveTo(meeting_pswd_btn)
-    pyautogui.click()
+    # pyautogui.click()
     pyautogui.write(pswd)
+    print("Typed password")
     time.sleep(3)
     pyautogui.press("enter")
 
