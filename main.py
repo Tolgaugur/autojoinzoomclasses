@@ -13,7 +13,7 @@ def sign_in(meetingid, pswd,meetingurl,classname):
     # If on windows use below line for opening zoom
     print("Opening Zoom")
     # subprocess.call('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
-    subprocess.Popen('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
+    subprocess.Popen('C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
    
     time.sleep(5)
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
@@ -21,7 +21,7 @@ def sign_in(meetingid, pswd,meetingurl,classname):
     if classname != "nan":
         print("Joinning for the class: "+classname)
     if meetingurl != "nan":
-        print("Meeting URL: "+meetingurl)
+        print(meetingurl)
     if meetingid != "nan":
         print("Meeting ID: "+meetingid)
     if pswd != "nan":
