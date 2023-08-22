@@ -6,78 +6,60 @@ import pandas as pd
 from datetime import datetime
 
 
-def sign_in(meetingid, pswd,meetingurl,classname):
+def sign_in(meetingid, pswd, meetingurl, classname):
     # Opens up the zoom app
     # change the path specific to your computer
 
     # If on windows use below line for opening zoom
     print("Opening Zoom")
     # subprocess.call('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
-    subprocess.Popen('C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
-   
+    subprocess.Popen("C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe")
+
     time.sleep(5)
     pyautogui.getWindowsWithTitle("Zoom")[0].activate()
     print("Zoom activated on the screen")
     if classname != "nan":
-        print("Joinning for the class: "+classname)
+        print("Joinning for the class: " + classname)
     if meetingurl != "nan":
         print(meetingurl)
     if meetingid != "nan":
-        print("Meeting ID: "+meetingid)
+        print("Meeting ID: " + meetingid)
     if pswd != "nan":
-        print("Meeting password: "+pswd)
-    
+        print("Meeting password: " + pswd)
+
     time.sleep(3)
-    
+
     # clicks the join button
     print("Joining the meeting")
-    
-    
-    join_btn = pyautogui.locateCenterOnScreen('join_button.png',confidence=0.9)
+
+    join_btn = pyautogui.locateCenterOnScreen("pics/join_button.png", confidence=0.9)
     # print(join_btn)
     pyautogui.moveTo(join_btn)
     pyautogui.click()
-    
-    
+
     # Type the meeting ID
-    meeting_id_btn = pyautogui.locateCenterOnScreen("meeting_id_button.png")
+    meeting_id_btn = pyautogui.locateCenterOnScreen("pics/meeting_id_button.png")
     # print(meeting_id_btn)
     pyautogui.moveTo(meeting_id_btn)
     # pyautogui.click()
-    if meetingid=="nan":
+    if meetingid == "nan":
         # print("No meeting id")
         pyp.copy(meetingurl)
         print("Copied link to clipboard : " + meetingurl)
-        pyautogui.hotkey("ctrl","v")
+        pyautogui.hotkey("ctrl", "v")
         # pyautogui.write(meetingurl)
     else:
         pyautogui.write(meetingid)
     time.sleep(3)
     pyautogui.press("enter")
     time.sleep(5)
-    
-    # Disables both the camera and the mic
-    # media_btn = pyautogui.locateAllOnScreen("media_btn.png")
-    # print(media_btn)
-    # for btn in media_btn:
-    #     pyautogui.moveTo(btn)
-    #     pyautogui.click()
-    #     time.sleep(5)
-
-    # Hits the join button
-    # join_btn = pyautogui.locateCenterOnScreen("join_btn.png",confidence=0.5)
-    
-    # pyautogui.moveTo(join_btn)
-    # print("clicked join_btn",join_btn)
-    
-    # pyautogui.click()
-    # time.sleep(5)
 
     # Types the password and hits enter
 
-    meeting_pswd_btn = pyautogui.locateCenterOnScreen("meeting_pswd.png",confidence=0.9)
-    
-    
+    meeting_pswd_btn = pyautogui.locateCenterOnScreen(
+        "pics/meeting_pswd.png", confidence=0.9
+    )
+
     pyautogui.moveTo(meeting_pswd_btn)
     # pyautogui.click()
     pyautogui.write(pswd)
@@ -90,8 +72,8 @@ def sign_in(meetingid, pswd,meetingurl,classname):
 df = pd.read_csv("timings.csv")
 
 while True:
-   # checking of the current time exists in our csv file
-   
+    # checking of the current time exists in our csv file
+
     now = datetime.now()
     current_day = now.strftime("%A")
     current_time = now.strftime("%H:%M")
@@ -109,11 +91,11 @@ while True:
             else:
                 m_pswd = str(row["meetingpswd"])
             m_url = row["meetingurl"]
-            if row["classname"]=="None":
-                m_name= ""
+            if row["classname"] == "None":
+                m_name = ""
             else:
                 m_name = str(row["classname"])
 
-            sign_in(m_id, m_pswd,m_url,m_name)
+            sign_in(m_id, m_pswd, m_url, m_name)
             time.sleep(46)
             print("signed in to meeting id:", m_id)
