@@ -12,9 +12,7 @@ def sign_in(meetingid, pswd, meetingurl, classname):
 
     # If on windows use below line for opening zoom
     print("Opening Zoom")
-    # subprocess.call('C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe')
-    subprocess.Popen("C:\\Users\\demir\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe")
-
+    # Replace the {USER} with your username on your pc
     subprocess.call("C:\\Users\\{USER}\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe")
 
     time.sleep(5)
